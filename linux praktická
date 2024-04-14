@@ -1,0 +1,146 @@
+Linxonoš
+1)
+Nový -> nazev() -> iso(empty) -> verze(other linux)
+Parametry pro linux jadra + ramky
+uložiště +50gb
+nastavní- > uložiště -> žádný -> cd (vybereme iso na linx)
+Síť 2x  nat; vvnítřní síť
+Pustíme
+Klavesnice CZ
+radio druhé 
+continue
+Instal type -> something else
+Rodělení disku
+New partition -> continue(free space)
+Double klik
+size -> 512 
+use as -> EFI 
+Double klik
+Size -> 1000
+Use as -> bios boot
+Double klik
+Size -> 2000
+Use as -> swap area
+Double klik
+Size -> 10000
+Use as -> ext4
+Mount point - > home
+Double klik
+Size -> zbytek
+Use as -> ext4
+Mount point ->  /
+Instal now -> continue
+Zadaní jmena machiny a hesla
+Continue
+Krimpování / kaystone
+2)
+Next-> next-> ….(osobní nastavení)
+Sudo -i
+adduser admin  -- home /admin/data
+admin heslo asdf!123
+full name linux administrátor (zbytel empty)
+chmod 700 /admin/data/
+adduser alan   --home /home/alan
+heslo asdf!123
+full name  Alan Delon
+groupadd delon
+nano /etc/group
+adm ++ admin
+sudo ++admin
+delon ++ alan
+save + leave
+chmod 740 /home/alan/
+
+3)
+nano test.sh
+	Cp -R ~/Dokumenty /tmp
+	Kill -kill 15658
+	Mkdir ~/Script
+	Touch ~/test.sh
+	Chmod ug+x ~/test.sh
+	Chown alan ~/test.sh
+	Ps -a
+4)
+Crontab -e  ->  1
+(konec stránky)
+0 1 * * 1  ~/test.sh
+5)
+Apt update
+6)
+Apt install inkscape 
+Apt install isc-dhcp-server
+Apt install bind9
+Nano /etc/dhcp/dhcpd.conf
+	Subnet 192.168.60.0 netmask 255.255.255.192{
+Range 192.168.60.1	192.168.60.50;
+Host maturant{
+Hardware ethernet 70:85:E3:2A:FE:05;
+}
+}
+Ip a
+Poslední -> enp0s8 (coppy)
+Nano /etc/default/isc-dhcp-server
+	INTERFACEv4 =“CoppyPase(enp0s8)“
+Ip a a 192.168.60.60/26 dev enp0s8(padesát členu)
+Service isc-dhcp status
+ctrl+c (close)
+Service isc-dhcp restart
+-||- status ->(Runin)
+-||-
+Cd /etc/bind/
+ls
+cat named.conf.default-zones
+local host(coppy)
+ nano named.conf.udelatko.net	
+(CoppyPase)
+„localhost“ -> „udelatko“
+„localhost“ -> udelatoko.net
+Nano named.conf
+	++include “/etc/bind/named.udelatko.net“
+Cp db.local udelatko.net
+Nano udelatko.net
+	Localhost root.local host -> udealtko.net root.udelatko.net
+	(cisla posobe)
+	Datum dne práce pospátku (rok měsíc den verce(01))
+	3h
+	30m
+	10h
+5h
+Localhost -> udelatko.net
+A -> 192.168.60.60	
+	AAAA -> smazat
+++(empty)  	IN	 MX 10 	mail.udelatko.net
+++ MAIL	 IN  	A  	192.168.60.59
+++ www	 IN 	A 	192.168.60.58
+++Web	 IN 	CNAME	 www.udelatko.net.
+7)
+Service cron status -> runin
+service isc-dhcp-server status -> runin
+service bind9 status -> runin
+8)
+apt install apache2
+cd /etc/apache2/sites-avaiable/
+ls
+cp 000-default.conf udealtko.net.conf
+nano udelatko.net.conf
+	#ServerName example.com -> ServerName www.udelatko.net	
+	DocumentRoot /mujweb
+mkdir /mujweb
+cd /mujweb/
+nano index.html -> nazdar ty kretene tady dej text
+a2ensite udelatko.net.conf
+systemctl reload apache2
+heslo(asdf!123)
+nano /etc/hosts
+	localhost -> www.udelatko.net
+cd .. 
+cd /etc/apache2/conf-avaiable/
+nano udelatko.conf
+	<Directory /mujweb>
+ 	   Directoryindex index.html
+ 	   Require all granted
+ 	  Allow from all
+</Directory>
+a2ensite udelatko.net.conf
+a2enconf udelatko.conf
+systemctl reload apache2 (heslo(asdf!123))
