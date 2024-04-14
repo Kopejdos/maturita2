@@ -1,0 +1,20 @@
+package com.example.morse;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class HelloController {
+
+    @FXML
+    private TextArea textMorse;
+
+    @FXML
+    private TextField textNormal;
+
+    // Mapování znaků na Morseovy kódy
+    private Map<Character, String> morseMap;
