@@ -1,0 +1,30 @@
+ @FXML
+    void back(ActionEvent event) {
+WebEngine webEngine = webvie.getEngine();
+        WebHistory history = webEngine.getHistory();
+        if(history.getCurrentIndex()>0) {
+            history.go(-1);
+        }
+    }
+
+    @FXML
+    void ford(ActionEvent event) {
+        WebEngine webEngine = webvie.getEngine();
+        WebHistory history = webEngine.getHistory();
+        if (history.getCurrentIndex()<history.getEntries().size()-1) {
+            history.go(1);
+        }
+    }
+private void loadInitialPage(){
+        WebEngine webEngine = webvie.getEngine();
+        webEngine.load("https://google.com");
+}
+private void loadPage(){
+        String url = links.getText();
+        WebEngine webEngine = webvie.getEngine();
+        if(!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "http://" + url;
+        }
+        webEngine.load(url);
+}
+}
