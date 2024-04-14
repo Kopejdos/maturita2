@@ -1,0 +1,37 @@
+ @FXML
+    void calculate(ActionEvent event) {
+        try {
+            // Načtení čísla z TextField
+            int number = Integer.parseInt(decNumber.getText());
+
+            // Získání vybraného formátu z ChoiceBoxu
+            String selectedFormat = mod.getValue();
+
+            // Podle vybraného formátu provede převod
+            switch (selectedFormat) {
+                case "BIN":
+                    etcNumber.setText(Integer.toBinaryString(number));
+                    break;
+                case "OCT":
+                    etcNumber.setText(Integer.toOctalString(number));
+                    break;
+                case "HEX":
+                    etcNumber.setText(Integer.toHexString(number));
+                    break;
+                default:
+                    etcNumber.setText("Invalid format");
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            // Pokud uživatel zadal neplatné číslo, vyhodíme chybu
+            etcNumber.setText("Invalid number format");
+        }
+    }
+
+    @FXML
+    void coppy(ActionEvent event) {
+        // Zkopírování obsahu TextArea do schránky
+        ClipboardContent content = new ClipboardContent();
+        content.putString(etcNumber.getText());
+        Clipboard.getSystemClipboard().setContent(content);
+    }
