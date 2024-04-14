@@ -1,0 +1,30 @@
+package com.example.myownwebbrowser;
+
+import javafx.concurrent.Worker;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebHistory;
+import javafx.scene.web.WebView;
+
+public class HelloController {
+
+    @FXML
+    private TextField links;
+
+    @FXML
+    private WebView webvie;
+
+    @FXML
+    void initialize() {
+        loadInitialPage();
+        links.setOnAction(event -> loadPage());
+        WebEngine webEngine = webvie.getEngine();
+        webEngine.getLoadWorker().stateProperty().addListener((observable,oldValue,newValue) -> {
+            if (newValue == Worker.State.SUCCEEDED) {
+                String curretIrl = webEngine.getLocation();
+                links.setText(curretIrl);
+            }
+        });
+    }
