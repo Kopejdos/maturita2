@@ -1,0 +1,58 @@
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Získání středu kostky
+        centerX = kostka.getX() + kostka.getWidth() / 2;
+        centerY = kostka.getY() + kostka.getHeight() / 2;
+
+        // Vytvoření transformace Rotate s umístěním středu otáčení v prostředku kostky
+        rotateTransform = new Rotate();
+        rotateTransform.setPivotX(centerX);
+        rotateTransform.setPivotY(centerY);
+
+        // Přidání transformace na kostku
+        kostka.getTransforms().add(rotateTransform);
+
+
+        // Nastavení listeneru na změnu hodnoty slideru
+        rotator.valueProperty().addListener((observable, oldValue, newValue) -> {
+            rotateTransform.setAngle(newValue.doubleValue());
+            uhel.setText(String.format("%.0f deg", newValue));
+        });
+
+        // Nastavení kroků slideru
+        rotator.setMajorTickUnit(45); // Každých 45 stupňů
+        rotator.setMinorTickCount(4); // Malé čárky mezi velkými
+        rotator.setSnapToTicks(true); // Zamagnetuje na kroky slideru
+        rotator.setShowTickMarks(true); // Zobrazí čárové značky
+
+        barva.getItems().addAll("Červená", "Zelená", "Modrá", "Oranžová", "Fialová", "Žlutá");
+
+        // Nastavení listeneru na změnu výběru v ChoiceBoxu
+        barva.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            switch (newValue) {
+                case "Červená":
+                    kostka.setFill(Color.RED);
+                    break;
+                case "Zelená":
+                    kostka.setFill(Color.GREEN);
+                    break;
+                case "Modrá":
+                    kostka.setFill(Color.BLUE);
+                    break;
+                case "Oranžová":
+                    kostka.setFill(Color.ORANGE);
+                    break;
+                case "Fialová":
+                    kostka.setFill(Color.PURPLE);
+                    break;
+                case "Žlutá":
+                    kostka.setFill(Color.YELLOW);
+                    break;
+            }
+        });
+
+        // Výchozí barva
+        barva.getSelectionModel().selectFirst();
+    }
+
+}
