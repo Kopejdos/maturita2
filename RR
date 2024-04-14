@@ -1,3 +1,4 @@
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Získání středu kostky
@@ -16,14 +17,8 @@
         // Nastavení listeneru na změnu hodnoty slideru
         rotator.valueProperty().addListener((observable, oldValue, newValue) -> {
             rotateTransform.setAngle(newValue.doubleValue());
-            uhel.setText(String.format("%.0f deg", newValue));
-        });
 
-        // Nastavení kroků slideru
-        rotator.setMajorTickUnit(45); // Každých 45 stupňů
-        rotator.setMinorTickCount(4); // Malé čárky mezi velkými
-        rotator.setSnapToTicks(true); // Zamagnetuje na kroky slideru
-        rotator.setShowTickMarks(true); // Zobrazí čárové značky
+        });
 
         barva.getItems().addAll("Červená", "Zelená", "Modrá", "Oranžová", "Fialová", "Žlutá");
 
