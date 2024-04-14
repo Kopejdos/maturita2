@@ -1,0 +1,32 @@
+package com.example.dectranslator;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HelloController implements Initializable {
+
+    @FXML
+    private TextField decNumber;
+
+    @FXML
+    private TextArea etcNumber;
+
+    @FXML
+    private ChoiceBox<String> mod;
+
+@Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Přidání možností do ChoiceBoxu
+        mod.getItems().addAll("BIN", "OCT", "HEX");
+        // Nastavení výchozího výběru
+        mod.setValue("BIN");
+    }
