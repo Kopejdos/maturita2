@@ -1,0 +1,19 @@
+
+    @FXML
+    void translate(ActionEvent event) {
+        String inputText = textNormal.getText().toUpperCase(); // Převedení vstupního textu na velká písmena
+
+        StringBuilder morseText = new StringBuilder();
+        for (int i = 0; i < inputText.length(); i++) {
+            char c = inputText.charAt(i);
+            if (morseMap.containsKey(c)) {
+                morseText.append(morseMap.get(c)).append("|"); // Přidání mezer mezi jednotlivými znaky
+            } else {
+                // Ignorování neznámých znaků, můžete je také přidat jako "?" nebo jiný symbol
+            }
+        }
+
+        // Nastavení přeloženého textu do textové oblasti
+        textMorse.setText(morseText.toString());
+    }
+}
