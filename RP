@@ -1,0 +1,32 @@
+package com.example.box_rotation;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Slider;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.scene.transform.Rotate;
+
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HelloController implements Initializable {
+
+    @FXML
+    private Rectangle kostka;
+
+    @FXML
+    private ChoiceBox<String> barva;
+
+    @FXML
+    private Slider rotator;
+
+    private Rotate rotateTransform;
+
+    private double centerX, centerY;
+
+    @FXML
+    private Text uhel;
